@@ -17,7 +17,7 @@
         <br />
 
       </div>
-      <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap"  cellspacing="0" width="100%">
+      <table id="datatablex" class="table table-striped table-bordered dt-responsive nowrap"  cellspacing="0" width="100%">
         <thead>
           <tr>
             <th>Nomor</th>
