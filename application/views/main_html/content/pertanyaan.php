@@ -17,7 +17,7 @@
         <br />
 
       </div>
-      <table id="datatablex" class="table table-striped table-bordered dt-responsive nowrap"  cellspacing="0" width="100%">
+      <table id="datatable-pertanyaan" class="table table-striped table-bordered dt-responsive nowrap"  cellspacing="0" width="100%">
         <thead>
           <tr>
             <th>Nomor</th>
@@ -88,7 +88,7 @@
                                     hide: true,
                                     styling: 'bootstrap3'
                                 });
-                document.getElementById("datatable").deleteRow(iRow);
+                document.getElementById("datatable-pertanyaan").deleteRow(iRow);
               }else{
                 new PNotify({
                                   title: 'Vote',
@@ -133,7 +133,7 @@
                                     hide: true,
                                     styling: 'bootstrap3'
                                 });
-                document.getElementById("datatable").deleteRow(iRow);
+                document.getElementById("datatable-pertanyaan").deleteRow(iRow);
               }else{
                 new PNotify({
                                   title: 'Vote',

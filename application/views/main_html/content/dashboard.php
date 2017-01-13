@@ -20,7 +20,7 @@
           <?php if($dataDosen->num_rows() > 0){ ?>
           <?php $nomor = 1;?>
             <?php foreach ($dataDosen->result_array() as $row) { ?>
-              <?php if(modules::run('mahasiswa/index/checkRating',$row['kd_tt_matkul'],$this->session->userdata('kd_mahasiswa')) == 'false'){ ?>
+              <?php //if(modules::run('mahasiswa/index/checkRating',$row['kd_tt_matkul'],$this->session->userdata('kd_mahasiswa')) == 'false'){ ?>
                 <tr>
                   <td><?=$nomor?></td>
                   <td><?=$row['kd_tt_matkul']?></td>
@@ -31,7 +31,7 @@
                   </td>
                 </tr>
                 <?php $nomor++; ?>
-              <?php } ?>
+              <?php //} ?>
             <?php } ?>
           <?php } ?>
         </tbody>

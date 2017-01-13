@@ -447,8 +447,14 @@ class Index extends MX_Controller {
                                                                                     inner join tt_kelas on tt_kelas.kd_tt_kelas = tt_kritik_saran.kd_jadwal
                                                                                     inner join tt_jadwal on tt_jadwal.kd_tt_kelas = tt_kelas.kd_tt_kelas
                                                                                     inner join tt_matkul on tt_matkul.kd_tt_matkul = tt_jadwal.kd_tt_matkul
-                                                                                    inner join tm_dosen on tm_dosen.kd_dosen = tt_matkul.kd_dosen");
+                                                                                    inner join tm_dosen on tm_dosen.kd_dosen = tt_matkul.kd_dosen
+                                                                                    group by tt_kritik_saran.kd_kritik_saran;");
         $data['view'] = 'main_html_admin/content/data_kritik_saran';
+        $this->load->view('main_html_admin/content', $data);
+    }
+    function grafik(){
+        $data['dataMatkul'] = $this->Gmodel->get('tm_matkul');
+        $data['view'] = 'main_html_admin/content/grafik';
         $this->load->view('main_html_admin/content', $data);
     }
     function logout(){

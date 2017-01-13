@@ -76,8 +76,8 @@
     <script>
         $(document).ready(function (){
             $('.right_col').on('mousewheel', function(e) {
-                    e.stopPropagation();                
-            })            
+                    e.stopPropagation();
+            })
         });
     </script>
     <!-- bootstrap-daterangepicker -->
@@ -117,6 +117,10 @@
     <!-- datatabel.js -->
     <script type="text/javascript">
       $('#datatable').DataTable();
+      $('#datatable-pertanyaan').DataTable({
+            lengthMenu: [ [5, 10, 50, -1], [5, 10, 50, "All"] ],
+            pageLength: 50
+      });
         $(document).ready(function(){
             $('#tabelLaporanTabungan').DataTable({
               dom: "Bfrtip",
@@ -143,7 +147,7 @@
                 },
               ],
               responsive: true
-            });             
+            });
             $('#tabelLaporanPinjaman').DataTable({
               dom: "Bfrtip",
               buttons: [
@@ -169,7 +173,7 @@
                 },
               ],
               responsive: true
-            });            
+            });
         });
     </script>
     <!-- datatabel.js -->
@@ -178,7 +182,7 @@
       $(document).ready(function() {
         var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
                               "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"
-                            ];        
+                            ];
         var options = {
             series: {
                 lines:  { show: true,lineWidth: 2,fill: true},
@@ -259,7 +263,7 @@
                 [<?=date('m') + 10?>, <?=modules::run('admin/index/getCountTabungan', '2016', '11')?>],
                 [<?=date('m') + 11?>, <?=modules::run('admin/index/getCountTabungan', '2016', '12')?>]
             ]
-        }];       
+        }];
 
         var DK = [{
             "label": "Debit",
@@ -309,7 +313,7 @@
                 [<?=date('m') + 10?>, <?=modules::run('admin/index/getSaldo', '2016', '11')?>],
                 [<?=date('m') + 11?>, <?=modules::run('admin/index/getSaldo', '2016', '12')?>]
             ]
-        }];        
+        }];
         var plot = $.plot("#canvas_dahs", DATA, options);
         var plotdk = $.plot("#canvas_dk", DK, options);
       });

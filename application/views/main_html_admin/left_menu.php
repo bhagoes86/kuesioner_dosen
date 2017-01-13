@@ -58,6 +58,9 @@
                   <li>
                     <a href="<?=base_url('admin/index/kritiksaran')?>"><i class="fa fa-comments-o"></i> Data Kritik dan Saran</a>
                   </li>
+                  <li>
+                    <a href="<?=base_url('admin/index/grafik')?>"><i class="fa fa-line-chart"></i> Grafik</a>
+                  </li>
                 </ul>
               </div>
             </div>
