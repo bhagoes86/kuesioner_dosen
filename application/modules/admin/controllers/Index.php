@@ -457,6 +457,39 @@ class Index extends MX_Controller {
         $data['view'] = 'main_html_admin/content/grafik';
         $this->load->view('main_html_admin/content', $data);
     }
+    function view_grafik($kd_matkul){
+        $data['grafik'] = $this->getDataGrafik($kd_matkul);
+        $this->load->view('main_html_admin/content/graph_bar', $data);
+    }
+    function getDataGrafik($kd_matkul = null){
+        $response = array();
+        if($kd_matkul != null){
+            $query = $this->Gmodel->rawQuery("select tm_dosen.nama_dosen, sum(tt_rating.nilai) as total from tt_rating
+                                                                        inner join tt_matkul on tt_matkul.kd_tt_matkul = tt_rating.kd_tt_matkul
+                                                                        inner join tm_matkul on tm_matkul.kd_matkul = tt_matkul.kd_matkul
+                                                                        inner join tm_dosen on tm_dosen.kd_dosen = tt_matkul.kd_dosen
+                                                                        where tm_matkul.kd_matkul = '".$kd_matkul."'");
+            if($query->num_rows() > 0){
+                foreach ($query->result_array() as $row) {
+                    $item = array();
+                    $item['Dosen'] = $row['nama_dosen'];
+                    $item['Vote Counted'] = $row['total'];
+                    array_push($response, $item);
+                }
+            }
+        }
+        echo json_encode($response);
+    }
+    function testDataGrafik(){
+        $response = array();
+        for($i=0;$i<10;$i++){
+            $item = array();
+            $item['Dosen'] = "A".$i;
+            $item['Vote Counted'] = $i;
+            array_push($response, $item);
+        }
+        echo json_encode($response);
+    }
     function logout(){
         $this->session->sess_destroy();
         header('location:'.base_url('admin/login'));

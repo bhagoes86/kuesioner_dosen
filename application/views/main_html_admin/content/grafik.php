@@ -20,6 +20,7 @@
         <div class="clearfix"></div>
         <div class="form-group">
           <div class="col-md-12 col-sm-12 col-xs-12" id="contentGrafik">
+            <div id="graph_bar" style="width:100%; height:200px;"></div>
           </div>
         </div>
     </div>
@@ -27,6 +28,7 @@
 </div>
     <!-- jQuery -->
     <script src="<?=base_url()?>assets/jquery/dist/jquery.min.js"></script>
+
     <script>
       function showDialogDetail(kode_dosen, tahun_ajaran){
           $.ajax({
@@ -40,102 +42,40 @@
       }
 
       $(document).ready(function() {
+          function requestData(url, chart){
+            $.ajax({
+              type: "GET",
+              url: url,
+              data: ""
+            })
+            .done(function( data ) {
+              // When the response to the AJAX request comes back render the chart with new data
+              chart.setData(JSON.parse(data));
+            })
+            .fail(function() {
+              // If there is no communication between the server, show an error
+              // alert( "error occured" );
+            });
+          }
+
+          var chart = Morris.Bar({
+            element: 'graph_bar',
+            data: [0,0],
+            xkey: 'Dosen',
+            ykeys: ['Vote Counted'],
+            labels: ['Vote Counted'],
+            hideHover: 'auto',
+            xLabelAngle: 60,
+            resize: true
+          });
         $(".select2_single").select2({
-          placeholder: "Select a Mata Kuliah",
+          placeholder: "Pilih Mata Kuliah",
           allowClear: true
         });
         $(".select2_single").on("change", function(e){
             e.preventDefault();
-            // alert($(".select2_single").val())get_tahun_ajaran
-            var valueHref = '<?=base_url('admin/index/get_tahun_ajaran')?>'+'/'+$(".select2_single").val();
-            $.ajax({
-              type: 'post',
-              url: valueHref,
-              data: $('#formupdatebiaya').serialize(),
-              success: function (i) {
-                // $("#contentTahunAjar").innerHTML = i;
-                // document.getElementById()
-                document.getElementById("contentTahunAjar").innerHTML = i;
-              }
-            });
+            var valueHref = '<?=base_url('admin/index/getDataGrafik')?>'+'/'+$(".select2_single").val();
+            requestData(valueHref, chart);
         });
       });
-    </script>
-
-    <script type="text/javascript">
-      function vote(kd_tt_matkul, kd_mahasiswa_kelas, nilai, kd_pertanyaan, r){
-        var iRow = r.parentNode.parentNode.rowIndex;
-        var valueHref = '<?=base_url('mahasiswa/index/giveRating/')?>'+'/'+kd_tt_matkul+'/'+kd_mahasiswa_kelas+'/'+nilai+'/'+kd_pertanyaan;
-        $.ajax({
-            type: 'post',
-            url: valueHref,
-            data: $('#formupdatebiaya').serialize(),
-            success: function (i) {
-              // alert(i);
-              if(i == 'true'){
-                new PNotify({
-                                    title: 'Vote',
-                                    text: 'Voting Success',
-                                    type: 'success',
-                                    hide: true,
-                                    styling: 'bootstrap3'
-                                });
-                document.getElementById("datatable").deleteRow(iRow);
-              }else{
-                new PNotify({
-                                  title: 'Vote',
-                                  text: "Please Try Again",
-                                  type: 'error',
-                                  hide: true,
-                                  styling: 'bootstrap3'
-                              });
-              }
-            }
-          });
-      }
-      function kritikSaran(mode, kd_tt_matkul, r){
-        var iRow = r.parentNode.parentNode.rowIndex;
-        var isi = null;
-        switch(mode){
-          case 'dosenFav' :
-            isi = document.getElementById("dosenFav").value;
-          break;
-          case 'KritikSaranDosen' :
-            isi = document.getElementById("kritikSaranDosen").value
-          break;
-          case 'KritikSaranOffice' :
-            isi = document.getElementById("kritikSaranOffice").value;
-          break;
-          default :
-            isi = "Tidak Ada ISI";
-          break;
-        }
-        var valueHref = '<?=base_url('mahasiswa/index/kritikSaran/')?>'+'/'+mode+'/'+kd_tt_matkul+'/'+isi;
-        $.ajax({
-            type: 'post',
-            url: valueHref,
-            data: $('#formupdatebiaya').serialize(),
-            success: function (i) {
-              // alert(i);
-              if(i == 'true'){
-                new PNotify({
-                                    title: 'Vote',
-                                    text: 'Voting Success',
-                                    type: 'success',
-                                    hide: true,
-                                    styling: 'bootstrap3'
-                                });
-                document.getElementById("datatable").deleteRow(iRow);
-              }else{
-                new PNotify({
-                                  title: 'Vote',
-                                  text: "Please Try Again",
-                                  type: 'error',
-                                  hide: true,
-                                  styling: 'bootstrap3'
-                              });
-              }
-            }
-          });
-      }
     </script>

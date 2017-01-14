@@ -64,6 +64,10 @@
         <!-- Switchery -->
     <script src="<?=base_url()?>assets/switchery/dist/switchery.min.js"></script>
     <script src="<?=base_url()?>assets/bootstrap-switch/bootstrap-switch.js"></script>
+    <!-- morris.js -->
+    <script src="<?=base_url()?>assets/raphael/raphael.min.js"></script>
+    <script src="<?=base_url()?>assets/morris.js/morris.min.js"></script>
+
 
     <!-- Dropzone.js -->
     <script src="<?=base_url()?>assets/dropzone/dist/min/dropzone.min.js"></script>
