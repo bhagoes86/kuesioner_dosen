@@ -468,7 +468,8 @@ class Index extends MX_Controller {
                                                                         inner join tt_matkul on tt_matkul.kd_tt_matkul = tt_rating.kd_tt_matkul
                                                                         inner join tm_matkul on tm_matkul.kd_matkul = tt_matkul.kd_matkul
                                                                         inner join tm_dosen on tm_dosen.kd_dosen = tt_matkul.kd_dosen
-                                                                        where tm_matkul.kd_matkul = '".$kd_matkul."'");
+                                                                        where tm_matkul.kd_matkul = '".$kd_matkul."'
+                                                                        group by tm_dosen.nama_dosen");
             if($query->num_rows() > 0){
                 foreach ($query->result_array() as $row) {
                     $item = array();

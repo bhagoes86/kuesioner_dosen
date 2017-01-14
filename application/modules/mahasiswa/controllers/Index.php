@@ -26,8 +26,7 @@ class Index extends MX_Controller {
                                 inner join tm_matkul on tm_matkul.kd_matkul = tt_matkul.kd_matkul
                                 inner join tm_dosen on tm_dosen.kd_dosen = tt_matkul.kd_dosen
                                 inner join tm_mahasiswa on tm_mahasiswa.kd_mahasiswa = tt_kelas.kd_mahasiswa
-                                where tm_mahasiswa.nim = '".$this->session->userdata('nim')."'
-                                group by tm_matkul.kd_matkul;");
+                                where tm_mahasiswa.nim = '".$this->session->userdata('nim')."';");
         $data['view'] = 'main_html/content/dashboard';
         $this->load->view('main_html/content', $data);
     }

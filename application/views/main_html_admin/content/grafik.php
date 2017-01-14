@@ -64,6 +64,7 @@
             xkey: 'Dosen',
             ykeys: ['Vote Counted'],
             labels: ['Vote Counted'],
+            barColors: ['#26B99A', '#34495E', '#ACADAC', '#3498DB'],
             hideHover: 'auto',
             xLabelAngle: 60,
             resize: true
