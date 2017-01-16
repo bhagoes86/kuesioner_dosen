@@ -20,7 +20,7 @@
         <div class="clearfix"></div>
         <div class="form-group">
           <div class="col-md-12 col-sm-12 col-xs-12" id="contentGrafik">
-            <div id="graph_bar" style="width:100%; height:200px;"></div>
+            <div id="graph_bar" style="width:100%; height:auto;"></div>
           </div>
         </div>
     </div>
@@ -66,7 +66,6 @@
             labels: ['Vote Counted'],
             barColors: ['#26B99A', '#34495E', '#ACADAC', '#3498DB'],
             hideHover: 'auto',
-            xLabelAngle: 60,
             resize: true
           });
         $(".select2_single").select2({

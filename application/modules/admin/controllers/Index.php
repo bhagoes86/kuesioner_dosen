@@ -481,16 +481,6 @@ class Index extends MX_Controller {
         }
         echo json_encode($response);
     }
-    function testDataGrafik(){
-        $response = array();
-        for($i=0;$i<10;$i++){
-            $item = array();
-            $item['Dosen'] = "A".$i;
-            $item['Vote Counted'] = $i;
-            array_push($response, $item);
-        }
-        echo json_encode($response);
-    }
     function logout(){
         $this->session->sess_destroy();
         header('location:'.base_url('admin/login'));

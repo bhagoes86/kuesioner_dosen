@@ -61,8 +61,12 @@
                   <td><a class="btn btn-md btn-success" id="btnKritikSaranOffice" onclick="kritikSaran('KritikSaranOffice','<?=$dataKelas->row()->kd_tt_matkul?>', this)">SIMPAN</a></td>
                 </tr>
               <?php }else{ ?>
-            Anda sudah menjawab semua pertanyaan
-          <?php } ?>
+                <div class="x_content bs-example-popovers">
+                  <div class="alert alert-warning alert-dismissible fade in" role="alert">
+                    Semua Pertanyaan Sudah Terjawab, Terima Kasih <strong><a href="<?=base_url('mahasiswa/index/cetak')?>" class="btn btn-sm btn-success" target="_blank">Klik Disini</a></strong> untuk mencetak kartu Kuesioner
+                  </div>
+                </div>
+        <?php } ?>
         </tbody>
       </table>
     </div>
