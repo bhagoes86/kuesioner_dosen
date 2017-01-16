@@ -118,6 +118,8 @@
     <script type="text/javascript">
       $('#datatable').DataTable();
       $('#datatable-pertanyaan').DataTable({
+            "bLengthChange": false,
+            "bPaginate": false,
             lengthMenu: [ [5, 10, 50, -1], [5, 10, 50, "All"] ],
             pageLength: 50
       });
