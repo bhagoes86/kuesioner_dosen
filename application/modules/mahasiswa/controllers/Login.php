@@ -24,7 +24,7 @@ class Login extends MX_Controller {
             $dataSelect['password'] = md5($params['password']);
             $selectData = $this->Gmodel->rawQuery("SELECT * FROM tt_kelas
                                                     INNER JOIN tm_mahasiswa ON tm_mahasiswa.kd_mahasiswa = tt_kelas.kd_mahasiswa
-                                                    WHERE tm_mahasiswa.nim = '".$dataSelect['username']."'
+                                                    WHERE tm_mahasiswa.nim LIKE '".$dataSelect['username']."%'
                                                     AND tm_mahasiswa.password = '".$dataSelect['password']."'
                                                     AND tm_mahasiswa.`status` = 0;");
             if($selectData->num_rows() > 0){

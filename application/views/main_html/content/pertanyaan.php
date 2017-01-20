@@ -45,6 +45,13 @@
                   <?php }else{ ?>
                   <?php } ?>
                 <?php } ?>
+                <?php if($nomor==1){ ?>
+                  <div class="x_content bs-example-popovers">
+                    <div class="alert alert-warning alert-dismissible fade in" role="alert">
+                      Semua Pertanyaan Sudah Terjawab, Terima Kasih <strong><a href="<?=base_url('mahasiswa/index/cetak')?>" class="btn btn-sm btn-success" target="_blank">Klik Disini</a></strong> untuk mencetak kartu Kuesioner
+                    </div>
+                  </div>
+                <?php  } ?>
                 <tr>
                   <td>Dosen yang paling disukai</td>
                   <td><textarea name="dosenFav" id="dosenFav"></textarea></td>

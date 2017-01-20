@@ -432,13 +432,19 @@ class Index extends MX_Controller {
             $this->load->view('main_html_admin/content/tahun_ajar_dosen', $data);
     }
     function detail_tahun_ajar($kd_dosen, $tahun_ajaran){
+        // $data['detailTahunAjar'] = $this->Gmodel->rawQuery("select *,sum(nilai) as total from tt_rating
+        //                                                                                         inner join tt_matkul on tt_matkul.kd_tt_matkul = tt_rating.kd_tt_matkul
+        //                                                                                         inner join tm_matkul on tm_matkul.kd_matkul = tt_matkul.kd_matkul
+        //                                                                                         inner join tt_kelas on tt_kelas.kd_tt_kelas = tt_rating.kd_mahasiswa_kelas
+        //                                                                                         where tt_matkul.kd_dosen = '".$kd_dosen."'
+        //                                                                                         and tt_matkul.tahun_ajaran = '".$tahun_ajaran."'
+        //                                                                                         group by tt_kelas.kd_mahasiswa");
         $data['detailTahunAjar'] = $this->Gmodel->rawQuery("select *,sum(nilai) as total from tt_rating
                                                                                                 inner join tt_matkul on tt_matkul.kd_tt_matkul = tt_rating.kd_tt_matkul
                                                                                                 inner join tm_matkul on tm_matkul.kd_matkul = tt_matkul.kd_matkul
-                                                                                                inner join tt_kelas on tt_kelas.kd_tt_kelas = tt_rating.kd_mahasiswa_kelas
                                                                                                 where tt_matkul.kd_dosen = '".$kd_dosen."'
                                                                                                 and tt_matkul.tahun_ajaran = '".$tahun_ajaran."'
-                                                                                                group by tt_kelas.kd_mahasiswa");
+                                                                                                group by tt_rating.kd_mahasiswa_kelas");
         $this->load->view('main_html_admin/content/detail_matkul_result', $data);
     }
     function kritiksaran(){

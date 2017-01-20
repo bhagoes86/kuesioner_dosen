@@ -69,8 +69,6 @@ class Index extends MX_Controller {
         return $this->checkPertanyaan($kd_tt_matkul, $data_pertanyaan);;
     }
     function checkPertanyaan($kd_tt_matkul, $data_pertanyaan = null){
-        // $data['kd_pertanyaan'] = $kd_pertanyaan;
-        // $data['kd_mahasiswa_kelas'] = $this->getKdMahasiswa($kd_mahasiswa_kelas);
         $return = null;
         $data['kd_tt_matkul'] = $kd_tt_matkul;
         $getData = $this->Gmodel->haveIn('kd_pertanyaan', $data_pertanyaan, $data, 'tt_rating');
