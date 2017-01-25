@@ -1,6 +1,6 @@
         <footer>
           <div class="pull-right">
-            Muhammad Handharbeni
+            Developer@STMIKASIA
           </div>
           <div class="clearfix"></div>
         </footer>

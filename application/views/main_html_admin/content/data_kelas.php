@@ -229,7 +229,8 @@
       $(document).ready(function(){
         $(".select_single").select2({
           placeholder: "Pilih Mahasiswa",
-          allowClear: true
+          allowClear: true,
+          dropdownParent: $("#modaladd")
         });
         $('#formcreatematkul').on('submit', function(e){
           var table = document.getElementById('datatable');

@@ -15,6 +15,7 @@
             <th>Tahun Ajaran</th>
             <th>Dosen</th>
             <th>Matkul</th>
+            <th>Aksi</th>
           </tr>
         </thead>
         <tbody>
