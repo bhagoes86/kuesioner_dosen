@@ -255,8 +255,13 @@ class Index extends MX_Controller {
                                                                         inner join tm_mahasiswa on tm_mahasiswa.kd_mahasiswa = tt_kelas.kd_mahasiswa
                                                                         inner join tm_kelas on tm_kelas.kd_kelas = tt_kelas.kd_kelas
                                                                         where tt_kelas.kd_kelas = '".$kd_kelas."'");
-            $data['query'] = $query;
-            $data['kelas'] = $query->row()->nama_kelas;
+            if($query->num_rows() > 0){
+                $data['query'] = $query;
+                $data['kelas'] = $query->row()->nama_kelas;
+            }else{
+                $data['query'] = null;
+                $data['kelas'] = null;
+            }
             $this->load->view('main_html_admin/content/data_mahasiswa_kelas', $data);
         }
     }

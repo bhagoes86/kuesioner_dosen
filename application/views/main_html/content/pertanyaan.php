@@ -1,3 +1,8 @@
+<style type="text/css">
+  textarea{
+    width: 100% !important;
+  }
+</style>
 <div class="col-md-12 col-sm-12 col-xs-12">
   <div class="x_panel">
     <div class="x_title">
@@ -20,9 +25,10 @@
       <table id="datatable-pertanyaan" class="table table-striped table-bordered dt-responsive nowrap"  cellspacing="0" width="100%">
         <thead>
           <tr>
-            <th>Nomor</th>
-            <th>Kriteria Penilaian</th>
-            <th>Nilai</th>
+            <th style="visibility: hidden;" width="0%">Nomor</th>
+            <th width="15%">Nomor</th>
+            <th width="52%">Kriteria Penilaian</th>
+            <th width="33%">Nilai</th>
           </tr>
         </thead>
         <tbody>
@@ -31,6 +37,7 @@
             <?php foreach ($availPertanyaan->result_array() as $row) { ?>
                   <?php if(modules::run('mahasiswa/index/checkPertanyaan', $dataKelas->row()->kd_tt_matkul, $row['kd_pertanyaan']) == "false"){ ?>
                     <tr>
+                      <td style="visibility: hidden;" width="0%"><?=$nomor?></td>
                       <td><?=$nomor?></td>
                       <td><?=$row['pertanyaan']?></td>
                       <td>
@@ -52,21 +59,33 @@
                     </div>
                   </div>
                 <?php  } ?>
+                <?php if(modules::run('mahasiswa/index/checkKritikSaran', $dataKelas->row()->kd_tt_matkul, 'fdosen') == 'null'){ ?>
+                  <tr>
+                    <?php $nomor +=1; ?>
+                    <td style="visibility: hidden;" width="0%"><?=$nomor?></td>
+                    <td>Dosen yang paling disukai</td>
+                    <td><textarea name="dosenFav" id="dosenFav"></textarea></td>
+                    <td><a class="btn btn-md btn-success" id="btnDosenFav" onclick="kritikSaran('dosenFav','<?=$dataKelas->row()->kd_tt_matkul?>', this)">SIMPAN</a></td>
+                  </tr>
+                <?php } ?>
+                <?php if(modules::run('mahasiswa/index/checkKritikSaran', $dataKelas->row()->kd_tt_matkul, 'ksdosen') == 'null'){ ?>
                 <tr>
-                  <td>Dosen yang paling disukai</td>
-                  <td><textarea name="dosenFav" id="dosenFav"></textarea></td>
-                  <td><a class="btn btn-md btn-success" id="btnDosenFav" onclick="kritikSaran('dosenFav','<?=$dataKelas->row()->kd_tt_matkul?>', this)">SIMPAN</a></td>
-                </tr>
-                <tr>
+                  <?php $nomor +=1; ?>
+                  <td style="visibility: hidden;" width="0%"><?=$nomor?></td>
                   <td>Kritik dan Saran untuk Dosen</td>
                   <td><textarea name="kritikSaranDosen" id="kritikSaranDosen"></textarea></td>
                   <td><a class="btn btn-md btn-success" id="btnKritikSaranDosen" onclick="kritikSaran('KritikSaranDosen','<?=$dataKelas->row()->kd_tt_matkul?>', this)">SIMPAN</a></td>
                 </tr>
+                <?php } ?>
+                <?php if(modules::run('mahasiswa/index/checkKritikSaran', $dataKelas->row()->kd_tt_matkul, 'ksoffice') == 'null'){ ?>
                 <tr>
+                  <?php $nomor +=1; ?>
+                  <td style="visibility: hidden;" width="0%"><?=$nomor?></td>
                   <td>Kritik dan Saran untuk BAK/FO/Security/OB</td>
                   <td><textarea name="kritikSaranOffice" id="kritikSaranOffice"></textarea></td>
                   <td><a class="btn btn-md btn-success" id="btnKritikSaranOffice" onclick="kritikSaran('KritikSaranOffice','<?=$dataKelas->row()->kd_tt_matkul?>', this)">SIMPAN</a></td>
                 </tr>
+                <?php } ?>
               <?php }else{ ?>
                 <div class="x_content bs-example-popovers">
                   <div class="alert alert-warning alert-dismissible fade in" role="alert">

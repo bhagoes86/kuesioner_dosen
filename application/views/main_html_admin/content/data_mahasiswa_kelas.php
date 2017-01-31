@@ -14,6 +14,7 @@
           </tr>
         </thead>
         <tbody>
+        <?php if($query != null){ ?>
           <?php if($query->num_rows() > 0){ ?>
           <?php $nomor = 1;?>
             <?php foreach ($query->result_array() as $row) { ?>
@@ -25,6 +26,8 @@
                 <?php $nomor++; ?>
             <?php } ?>
           <?php } ?>
+
+        <?php  } ?>
         </tbody>
       </table>
     </div>

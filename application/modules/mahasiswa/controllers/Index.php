@@ -44,13 +44,14 @@ class Index extends MX_Controller {
         $this->load->view('main_html/content/print');
     }
     function pertanyaan($kd_tt_matkul = 0, $kd_tt_kelas = 0){
-        // $data['dataPertanyaan'] = $this->Gmodel->get('tm_pertanyaan');
+        // $data['availPertanyaan'] = $this->Gmodel->get('tm_pertanyaan');
         $data['availPertanyaan'] = $this->Gmodel->rawQuery("SELECT * FROM tm_pertanyaan
                                                                                     WHERE kd_pertanyaan NOT IN (SELECT kd_pertanyaan
                                                                                                                                     FROM tt_rating
                                                                                                                                     WHERE kd_mahasiswa_kelas = '".$kd_tt_kelas."'
                                                                                                                                     AND kd_tt_matkul = '".$kd_tt_matkul."')");
         // $dataSelectTTMatkul['kd_tt_matkul'] = $kd_tt_matkul;
+        $data['kd_matkul'] = $kd_tt_matkul;
         $data['dataKelas'] = $this->Gmodel->rawQuery("SELECT * FROM `tt_matkul`
                                                                                 INNER JOIN tm_dosen ON tm_dosen.kd_dosen = tt_matkul.kd_dosen
                                                                                 INNER JOIN tm_matkul ON tm_matkul.kd_matkul = tt_matkul.kd_matkul
@@ -71,6 +72,7 @@ class Index extends MX_Controller {
     function checkPertanyaan($kd_tt_matkul, $data_pertanyaan = null){
         $return = null;
         $data['kd_tt_matkul'] = $kd_tt_matkul;
+        $data['kd_mahasiswa_kelas'] = $this->getKdMahasiswa($this->session->userdata('kd_mahasiswa'));
         $getData = $this->Gmodel->haveIn('kd_pertanyaan', $data_pertanyaan, $data, 'tt_rating');
         if($getData->num_rows() > 0){
             $return = "true";
@@ -162,6 +164,36 @@ class Index extends MX_Controller {
         }else{
             echo "false";
         }
+    }
+    function checkKritikSaran($kode_jadwal, $tujuan){
+        $data['kd_jadwal'] = $kode_jadwal;
+        $data['kd_mahasiswa'] = $this->getKdMahasiswa($this->session->userdata('kd_mahasiswa'));
+        $getData = $this->Gmodel->select($data, 'tt_kritik_saran');
+        $return = "null";
+        if($getData->num_rows() > 0){
+            switch ($tujuan) {
+                case 'ksdosen':
+                    $return = $getData->row()->kritiksarandosen==null?"null":$getData->row()->kritiksarandosen;
+                    break;
+
+                case 'ksoffice':
+                    $return = $getData->row()->kritiksaranoffice==nulll?"null":$getData->row()->kritiksaranoffice;
+                    break;
+
+                case 'fdosen':
+                    $return = $getData->row()->dosen_favorit==null?"null":$getData->row()->dosen_favorit;
+                    break;
+
+                case 'rekomendasi':
+                    $return = $getData->row()->rekomendasi==null?"null":$getData->row()->rekomendasi;
+                    break;
+
+                default:
+                    $return = $getData->row()->kritiksarandosen==null?"null":$getData->row()->kritiksarandosen;
+                    break;
+            }
+        }
+        echo $return;
     }
     function logout(){
         $this->session->sess_destroy();

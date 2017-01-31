@@ -34,7 +34,7 @@
         <div class="animate form login_form">
           <section class="login_content">
             <form method="post" action="<?=base_url('mahasiswa/login/do_login')?>" id="formLogin">
-              <h1>Login Form</h1>
+              <h1>Kuisioner Login Form</h1>
               <div>
                 <input type="text" class="form-control" placeholder="Nim" required="" name="nim" />
               </div>
@@ -47,9 +47,15 @@
 
               <div class="clearfix"></div>
             </form>
-          </section>
+			<br>
+			<br>
+			<br>
+			<br>
+			<p>*Nim : nim_mhs_masing2</p>
+			<p>*Password : 12345</p>
+          </section>		  
         </div>
-      </div>
+      </div>	  
     </div>
   </body>
 </html>

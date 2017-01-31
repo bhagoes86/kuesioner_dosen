@@ -42,7 +42,7 @@
 
     <!-- Custom Theme Style -->
     <link href="<?=base_url()?>/assets/css/custom.min.css" rel="stylesheet">
-    <style type="text/css">
+        <style type="text/css">
         .select2{
             width: 100% !important;
         }
